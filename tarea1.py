@@ -90,41 +90,74 @@ class InstitucionSocial(Instituciones):
 	def __init__(self, apoyo, nombre):
 		super().__init__(apoyo, nombre)
 
-print("Bienvenido a la interfaz. Realiza una accion")
-print("1: Ingresa un voluntario")
-print("2: Crear un proyecto")
-print("3: Gestionar proyecto")
-print("4: Visualizar")
-print("5: Eliminar")
-print("6: Salir")
 
-#Funcion para manejar el registro. fechaIngreso corresponde a una tupla de tipo (año,mes,dia)
-def registro():
-	nombre = input("Ingresa tu nombre")
-	edad = int(input("Ingresa tu edad"))
+#INTERFAZ DE USO
 
-	date_entry = input('Ingresa la fecha en formato YYYY-MM-DD')
-	year, month, day = map(int, date_entry.split('-'))
-	fechaIngreso = datetime.date(year, month, day)
-	proximaAccion = input("Ingresa tu proxima accion")
+jefe1 = jefeDeProyecto("bulbasaur","1","1996-2-27")
+jefe2 = jefeDeProyecto("ivysaur","2","1996-2-27")
+jefe3 = jefeDeProyecto("venusaur","3","1996-2-27")
 
-	return [nombre, edad , fechaIngreso, proximaAccion]
+class Menu:
 
-lista_voluntarios = [[],[],[]]
+	def __init__(self):
+		self.opciones = {
+						"1": self.ingresar_voluntario
+						"2": self.crear_proyecto
+						"3": self.gestionar_proyecto
+						"4": self.visualizar
+						"5": self.
+						}
+
+	def display_menu(self):
+		print("""
+			1: Ingresa un voluntario
+			2: Crear un proyecto
+			3: Gestionar proyecto
+			4: Visualizar
+			5: Eliminar
+			6: Salir
+			""")
+
+	def run(self):
+		running = True
+		while running:
+		self.display_menu()
+		eleccion = input("Ingrese opcion:")
+		accion = self.opciones.get(eleccion)
+		if accion:
+			accion()
+		else:
+			print("{0} no es una opcion valida".format(eleccion))
+		if eleccion == '5':
+			running = False
+
+	def ingresar_voluntario(self):
+		nombre = input("Ingresa tu nombre")
+		edad = int(input("Ingresa tu edad"))
+
+		date_entry = input('Ingresa la fecha en formato YYYY-MM-DD')
+		year, month, day = map(int, date_entry.split('-'))
+		fechaIngreso = dt.date(year, month, day)
+
+		proximaAccion = input("Ingresa tu proxima accion") 				
+
+
 
 a = input("Ingresa la accion a realizar")
 
-if a == 1:
+if a == "1":
 	vol = input("Que tipo de voluntario eres?") #Recibe un string que indica el 
 	#tipo de voluntario
-	if vol = "jefe":
+	if vol == "jefe":
 		regJ = registro()
 		jefe = jefeDeProyecto(regJ[0],regJ[1],regJ[2],regJ[3])
 		lista_voluntarios[0].append(jefe)
-	else if vol = "analista":
+	else if vol == "analista":
 		regA = registro()
 		esp = input("Cual es tu especializacion?")
 		analista = Analista(regA[0],regA[1],regA[2],regA[3],esp)
 		lista_voluntarios[1].append(analista)
-	else if vol = "obrero":
-		
+	else if vol == "obrero":
+		regO = registro()
+		obrero = Analista(regO[0],regO[1],regO[2],regO[3])
+		lista_voluntarios[2].append(obrero)
